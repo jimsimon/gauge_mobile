@@ -1,0 +1,15 @@
+.DS_Store
+.atom/
+.dart_tool/
+.idea
+.vscode/
+.packages
+.pub/
+build/
+ios/.generated/
+packages
+.flutter-plugins
+
+*.iml
+
+assets/canvas-developer-key.json
