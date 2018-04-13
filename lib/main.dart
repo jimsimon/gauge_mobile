@@ -55,7 +55,8 @@ class GaugeWebViewState extends State<GaugeWebView> {
     var tokenResults = await oAuthHelper.getToken(code);
     var sld = await _getSessionLaunchDetails(tokenResults);
 
-    flutterWebviewPlugin.launch(sld.url);
+//    flutterWebviewPlugin.launch(sld.url);
+    flutterWebviewPlugin.evalJavascript('window.location.href="${sld.url}"');
   }
 
   _getSessionLaunchDetails(TokenResults tokenResults) async {
