@@ -44,7 +44,6 @@ abstract class CanvasApiClient {
 
   _makeRequest(token, url) async {
     var requestUrl = baseUrl + url;
-    print(requestUrl);
     final response = await client.send(new Request('GET', requestUrl,
         headers: new Headers({'Authorization': 'Bearer $token'})));
     await client.close();
