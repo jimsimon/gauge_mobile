@@ -4,7 +4,7 @@ An experimental webview based mobile app for Gauge AMS using [Flutter](https://f
 
 This application uses the Canvas REST API to authenticate a user and then execute an LTI launch into Gauge via a webview.
 
-DISCLAIMER: This application is not officially supported by Instructure.  It is not intended for production use and any support requests will most likely be ignored.
+**DISCLAIMER: This application is not officially supported by Instructure.  It is not intended for production use and any support requests will most likely be ignored.**
 
 ## Getting Started
 
