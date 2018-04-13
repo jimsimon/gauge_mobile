@@ -17,58 +17,11 @@ class MyApp extends StatelessWidget {
         theme: new ThemeData.dark(
 //          primarySwatch: Colors.blue,  TODO: Switch to canvas color
             ),
-        routes: {'/': (_) => new GaugeLoginWebView()},
-        onUnknownRoute: (routeSettings) {
-          return new MaterialPageRoute(
-              builder: (context) => new GaugeWebView(url: routeSettings.name));
-        });
+        routes: {'/': (_) => new GaugeWebView()});
   }
-}
-
-class GaugeWebView extends StatefulWidget {
-  final String url;
-
-  const GaugeWebView({Key key, this.url}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => new GaugeWebViewState(url);
 }
 
 class GaugeWebViewState extends State<GaugeWebView> {
-  final flutterWebviewPlugin = new FlutterWebviewPlugin();
-
-  final String url;
-
-  GaugeWebViewState(this.url);
-
-  @override
-  void initState() {
-    super.initState();
-
-    flutterWebviewPlugin.close();
-
-    flutterWebviewPlugin.launch(url);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
-    flutterWebviewPlugin.resize(new Rect.fromLTWH(
-        0.0,
-        statusBarHeight,
-        MediaQuery.of(context).size.width,
-        MediaQuery.of(context).size.height - statusBarHeight));
-    return new Container();
-  }
-
-  @override
-  void dispose() {
-    flutterWebviewPlugin.dispose();
-    super.dispose();
-  }
-}
-
-class GaugeLoginWebViewState extends State<GaugeLoginWebView> {
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
 
   @override
@@ -102,7 +55,7 @@ class GaugeLoginWebViewState extends State<GaugeLoginWebView> {
     var tokenResults = await oAuthHelper.getToken(code);
     var sld = await _getSessionLaunchDetails(tokenResults);
 
-    Navigator.of(context).pushNamed(sld.url);
+    flutterWebviewPlugin.launch(sld.url);
   }
 
   _getSessionLaunchDetails(TokenResults tokenResults) async {
@@ -154,7 +107,7 @@ class GaugeLoginWebViewState extends State<GaugeLoginWebView> {
   }
 }
 
-class GaugeLoginWebView extends StatefulWidget {
+class GaugeWebView extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new GaugeLoginWebViewState();
+  State<StatefulWidget> createState() => new GaugeWebViewState();
 }
